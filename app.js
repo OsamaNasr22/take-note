@@ -1,2 +1,2 @@
-const fs = require('fs')
-fs.appendFileSync('notes.txt', "Hi! \n");
+const getNotes = require('./notes')
+console.log(getNotes())
