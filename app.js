@@ -1,8 +1,6 @@
 const yargs = require('yargs')
 const notes = require('./notes')
 
-yargs.command('read', "read note!", {}, () => console.log('read specific file'))
-yargs.command('list', "list all notes!", {}, () => console.log('list all notes'))
 yargs.command( 'add', "add new note", {
   'body' : {
     alias : 'b',
@@ -17,6 +15,16 @@ yargs.command( 'add', "add new note", {
   }
   }, function(argv) {
   notes.addNote(argv.title, argv.body)
+  }
+)
+yargs.command('remove', 'remove specific note', {
+  title:{
+    alias: "t",
+    demandOption : true,
+    type: 'string'
+  }
+},function (argv) {
+  notes.removeNote(argv.title)
   }
 )
 yargs.parse()

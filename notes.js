@@ -35,6 +35,17 @@ function saveNotes(notes){
  const saveNotes = JSON.stringify(notes)
  fs.writeFileSync('notes.json', saveNotes);
 }
+
+function removeNote(title){
+ const notes = loadNotes();
+ const remainsNotes = notes.filter((note) => note.title !== title)
+ if (notes.length !== remainsNotes.length){
+  saveNotes(remainsNotes)
+  console.log(`${title} note is removed`)
+ }else{
+  console.log('this note not found')
+ }
+}
 module.exports = {
- getNotes, addNote
+ getNotes, addNote, removeNote
 };
