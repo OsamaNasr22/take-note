@@ -18,10 +18,8 @@ function readNote(title){
 
 function addNote(title, body){
  const notes = loadNotes();
- console.log(notes)
- const duplicatedNotes = notes.filter((note) => note.title === title)
- console.log(duplicatedNotes.length)
- if (duplicatedNotes.length === 0 ){
+ const duplicatedNote = notes.find((note) => note.title === title)
+ if (!duplicatedNote ){
  notes.push({
   title : title,
   body : body
