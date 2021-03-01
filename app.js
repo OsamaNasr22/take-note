@@ -13,18 +13,23 @@ yargs.command( 'add', "add new note", {
     type : "string",
     demandOption : true
   }
-  }, function(argv) {
-  notes.addNote(argv.title, argv.body)
-  }
-)
+  }, argv => notes.addNote(argv.title, argv.body))
+
 yargs.command('remove', 'remove specific note', {
-  title:{
+    title:{
     alias: "t",
     demandOption : true,
     type: 'string'
-  }
-},function (argv) {
-  notes.removeNote(argv.title)
-  }
-)
+  }}, argv => notes.removeNote(argv.title))
+
+yargs.command('list','list your notes', {} , (argv) => notes.listNotes())
+
+yargs.command('read', 'read a note',
+  {
+    title: {
+      alias: "t",
+      demandOption: true,
+      type: "string"
+    }
+  }, argv => notes.readNote(argv.title))
 yargs.parse()
